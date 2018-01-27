@@ -1,5 +1,5 @@
-var secretKey = process.env.DMA_SECRET_KEY;
-var mongoUrl = process.env.DMA_MONGO_URL;
+var secretKey = '12345-67890-09876-54321';
+var mongoUrl = 'mongodb://localhost:27017/dmaware';
 var fbClientId = process.env.DMA_FB_CLIENTID;
 var fbClientSecret = process.env.DMA_FB_SECRET;
 var mailApiKey = process.env.DMA_MAILGUN_KEY;
