@@ -36,6 +36,36 @@ router.route('/')
             }
             res.json("Successfully removed " + attacks.length + " attacks");
     });
+
+//########################################
+router.route('/:attackId')
+
+///GET attack by ID
+.get(Verify.verifyOrdinaryUser, function(req, res, next) {
+    Attack.findById(req.params.attackId)
+        .exec(function(err, attack) {
+            if(err) throw err;
+            res.json(attack);
+    });
+})
+
+//PUT update club by ID
+.put(Verify.verifyOrdinaryUser, function(req, res, next) {
+    Attack.findByIdAndUpdate(req.params.attackId, {$set: req.body}, {new: true}) 
+        .exec(function(err, attack) {
+            if(err) throw err;
+            res.json(attack);
+    });
+})
+
+///DELETE club by ID
+.delete(Verify.verifyOrdinaryUser, function(req, res, next) {
+    Attack.findById(req.params.attackId)
+        .exec(function(err, attack) {
+            if(err) throw err;
+            attack.remove();
+            res.json("Successfully removed " + attack.name);
+    });
 });
 
 module.exports = router;
