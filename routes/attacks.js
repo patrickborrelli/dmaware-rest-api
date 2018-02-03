@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Attack = require('../models/attack');
+var Verify = require('./verify');
 
 //#####################################
 router.route('/')
@@ -35,7 +36,8 @@ router.route('/')
                 attacks[i].remove();
             }
             res.json("Successfully removed " + attacks.length + " attacks");
-    });
+    })
+});
 
 //########################################
 router.route('/:attackId')

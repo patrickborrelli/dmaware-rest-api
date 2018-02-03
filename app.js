@@ -23,6 +23,13 @@ db.once('open', function() {
 //set up routers:
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var attacks = require('./routes/attacks');
+var cantrips = require('./routes/cantrips');
+var proficiency_bonuses = require('./routes/proficiency_bonuses');
+var character_classes = require('./routes/character_classes');
+var races = require('./routes/races');
+var ability_score_increases = require('./routes/ability_score_increases');
+
 
 var app = express();
 
@@ -48,6 +55,13 @@ app.use(cors());
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/attacks', attacks);
+app.use('/cantrips', cantrips);
+app.use('/proficiency_bonuses', proficiency_bonuses);
+app.use('/character_classes', character_classes);
+app.use('/ability_score_increases', ability_score_increases);
+app.use('/races', races);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
