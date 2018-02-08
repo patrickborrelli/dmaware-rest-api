@@ -29,6 +29,11 @@ var proficiency_bonuses = require('./routes/proficiency_bonuses');
 var character_classes = require('./routes/character_classes');
 var races = require('./routes/races');
 var ability_score_increases = require('./routes/ability_score_increases');
+var skills = require('./routes/skills');
+var spells = require('./routes/spells');
+var slots = require('./routes/slots');
+var spell_slots = require('./routes/spell_slots');
+var spellbooks = require('./routes/spellbooks');
 
 
 var app = express();
@@ -61,6 +66,11 @@ app.use('/proficiency_bonuses', proficiency_bonuses);
 app.use('/character_classes', character_classes);
 app.use('/ability_score_increases', ability_score_increases);
 app.use('/races', races);
+app.use('/skills', skills);
+app.use('/spells', spells);
+app.use('/slots', slots);
+app.use('/spell_slots', spell_slots);
+app.use('/spellbooks', spellbooks);
 
 
 // catch 404 and forward to error handler
