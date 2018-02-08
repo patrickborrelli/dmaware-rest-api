@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Spell = require('./spell.js');
-var SpellSlot = require('./spell_slot.js');
+var Slot = require('./slot.js');
 var Schema = mongoose.Schema;
 
 var Spellbook = new Schema({
@@ -20,9 +20,9 @@ var Spellbook = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Spell'
     }],
-    spell_slots: [{
+    slots: [{
         type: Schema.Types.ObjectId,
-        ref: 'SpellSlot'
+        ref: 'Slot'
     }]    
 }, {
     timestamps: true
