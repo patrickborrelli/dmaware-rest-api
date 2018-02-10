@@ -37,6 +37,7 @@ var spellbooks = require('./routes/spellbooks');
 var items = require('./routes/items');
 var capacities = require('./routes/capacities');
 var inventories = require('./routes/inventories');
+var characters = require('./routes/characters');
 
 var app = express();
 
@@ -76,6 +77,7 @@ app.use('/spellbooks', spellbooks);
 app.use('/items', items);
 app.use('/capacities', capacities);
 app.use('/inventories', inventories);
+app.use('/characters', characters);
 
 
 // catch 404 and forward to error handler
