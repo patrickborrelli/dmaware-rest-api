@@ -55,7 +55,7 @@ router.route('/:raceId')
     });
 })
 
-//PUT update club by ID
+//PUT update race by ID
 .put(Verify.verifyOrdinaryUser, function(req, res, next) {
     Race.findByIdAndUpdate(req.params.raceId, {$set: req.body}, {new: true}) 
         .exec(function(err, race) {
@@ -64,7 +64,7 @@ router.route('/:raceId')
     });
 })
 
-///DELETE club by ID
+///DELETE race by ID
 .delete(Verify.verifyOrdinaryUser, function(req, res, next) {
     Race.findById(req.params.raceId)
         .exec(function(err, race) {

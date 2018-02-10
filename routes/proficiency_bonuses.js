@@ -26,7 +26,7 @@ router.route('/')
 })
 
 //DELETE all proficiency_bonuses:
-.delete(Verify.verifyAdmin, function(req, res, next) {
+.delete(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function(req, res, next) {
     ProficiencyBonus.find(req.query)
         .exec(function(err, proficiency_bonuses) {
             if(err) return next(err);

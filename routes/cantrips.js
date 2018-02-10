@@ -26,7 +26,7 @@ router.route('/')
 })
 
 //DELETE all cantrips:
-.delete(Verify.verifyAdmin, function(req, res, next) {
+.delete(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function(req, res, next) {
     Cantrip.find(req.query)
         .exec(function(err, cantrips) {
             if(err) return next(err);

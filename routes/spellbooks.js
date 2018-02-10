@@ -50,7 +50,7 @@ router.route('/:spellbookId')
     });
 })
 
-//PUT update club by ID
+//PUT update spellbook by ID
 .put(Verify.verifyOrdinaryUser, function(req, res, next) {
     Spellbook.findByIdAndUpdate(req.params.spellbookId, {$set: req.body}, {new: true}) 
         .exec(function(err, spellbook) {
@@ -59,7 +59,7 @@ router.route('/:spellbookId')
     });
 })
 
-///DELETE club by ID
+///DELETE spellbook by ID
 .delete(Verify.verifyOrdinaryUser, function(req, res, next) {
     Spellbook.findById(req.params.spellbookId)
         .exec(function(err, spellbook) {

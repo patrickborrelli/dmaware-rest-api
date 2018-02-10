@@ -19,7 +19,7 @@ router.route('/')
 })
 
 //DELETE all users:
-.delete(Verify.verifyAdmin, function(req, res, next) {
+.delete(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function(req, res, next) {
     User.find(req.query) 
         .exec(function(err, users) {
             if(err) return next(err);

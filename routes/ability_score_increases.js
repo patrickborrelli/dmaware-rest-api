@@ -26,7 +26,7 @@ router.route('/')
 })
 
 //DELETE all ability_score_increases:
-.delete(Verify.verifyAdmin, function(req, res, next) {
+.delete(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function(req, res, next) {
     AbilityScoreIncrease.find(req.query)
         .exec(function(err, ability_score_increases) {
             if(err) return next(err);
@@ -51,7 +51,7 @@ router.route('/:ability_score_increaseId')
     });
 })
 
-//PUT update club by ID
+//PUT update ability score increase by ID
 .put(Verify.verifyOrdinaryUser, function(req, res, next) {
     AbilityScoreIncrease.findByIdAndUpdate(req.params.ability_score_increaseId, {$set: req.body}, {new: true}) 
         .exec(function(err, ability_score_increase) {
@@ -60,7 +60,7 @@ router.route('/:ability_score_increaseId')
     });
 })
 
-///DELETE club by ID
+///DELETE ability score increase by ID
 .delete(Verify.verifyOrdinaryUser, function(req, res, next) {
     AbilityScoreIncrease.findById(req.params.ability_score_increaseId)
         .exec(function(err, ability_score_increase) {

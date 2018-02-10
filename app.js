@@ -34,7 +34,9 @@ var spells = require('./routes/spells');
 var slots = require('./routes/slots');
 var spell_slots = require('./routes/spell_slots');
 var spellbooks = require('./routes/spellbooks');
-
+var items = require('./routes/items');
+var capacities = require('./routes/capacities');
+var inventories = require('./routes/inventories');
 
 var app = express();
 
@@ -71,6 +73,9 @@ app.use('/spells', spells);
 app.use('/slots', slots);
 app.use('/spell_slots', spell_slots);
 app.use('/spellbooks', spellbooks);
+app.use('/items', items);
+app.use('/capacities', capacities);
+app.use('/inventories', inventories);
 
 
 // catch 404 and forward to error handler

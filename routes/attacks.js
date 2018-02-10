@@ -26,7 +26,7 @@ router.route('/')
 })
 
 //DELETE all attacks:
-.delete(Verify.verifyAdmin, function(req, res, next) {
+.delete(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function(req, res, next) {
     Attack.find(req.query)
         .exec(function(err, attacks) {
             if(err) return next(err);
@@ -51,7 +51,7 @@ router.route('/:attackId')
     });
 })
 
-//PUT update club by ID
+//PUT update attack by ID
 .put(Verify.verifyOrdinaryUser, function(req, res, next) {
     Attack.findByIdAndUpdate(req.params.attackId, {$set: req.body}, {new: true}) 
         .exec(function(err, attack) {
@@ -60,7 +60,7 @@ router.route('/:attackId')
     });
 })
 
-///DELETE club by ID
+///DELETE attack by ID
 .delete(Verify.verifyOrdinaryUser, function(req, res, next) {
     Attack.findById(req.params.attackId)
         .exec(function(err, attack) {

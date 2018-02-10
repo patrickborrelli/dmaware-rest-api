@@ -51,7 +51,7 @@ router.route('/:spellId')
     });
 })
 
-//PUT update club by ID
+//PUT update spell by ID
 .put(Verify.verifyOrdinaryUser, function(req, res, next) {
     Spell.findByIdAndUpdate(req.params.spellId, {$set: req.body}, {new: true}) 
         .exec(function(err, spell) {
@@ -60,7 +60,7 @@ router.route('/:spellId')
     });
 })
 
-///DELETE club by ID
+///DELETE spell by ID
 .delete(Verify.verifyOrdinaryUser, function(req, res, next) {
     Spell.findById(req.params.spellId)
         .exec(function(err, spell) {

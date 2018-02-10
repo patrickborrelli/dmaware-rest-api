@@ -50,7 +50,7 @@ router.route('/:slotId')
     });
 })
 
-//PUT update club by ID
+//PUT update spell slot by ID
 .put(Verify.verifyOrdinaryUser, function(req, res, next) {
     SpellSlot.findByIdAndUpdate(req.params.slotId, {$set: req.body}, {new: true}) 
         .exec(function(err, spell_slot) {
@@ -59,7 +59,7 @@ router.route('/:slotId')
     });
 })
 
-///DELETE club by ID
+///DELETE spell slot by ID
 .delete(Verify.verifyOrdinaryUser, function(req, res, next) {
     SpellSlot.findById(req.params.slotId)
         .exec(function(err, spell_slot) {

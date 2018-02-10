@@ -51,7 +51,7 @@ router.route('/:skillId')
     });
 })
 
-//PUT update club by ID
+//PUT update skill by ID
 .put(Verify.verifyOrdinaryUser, function(req, res, next) {
     Skill.findByIdAndUpdate(req.params.skillId, {$set: req.body}, {new: true}) 
         .exec(function(err, skill) {
@@ -60,7 +60,7 @@ router.route('/:skillId')
     });
 })
 
-///DELETE club by ID
+///DELETE skill by ID
 .delete(Verify.verifyOrdinaryUser, function(req, res, next) {
     Skill.findById(req.params.skillId)
         .exec(function(err, skill) {

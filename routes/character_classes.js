@@ -28,7 +28,7 @@ router.route('/')
 })
 
 //DELETE all character classes:
-.delete(Verify.verifyAdmin, function(req, res, next) {
+.delete(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function(req, res, next) {
     CharacterClass.find(req.query)
         .exec(function(err, character_classes) {
             if(err) return next(err);
@@ -54,7 +54,7 @@ router.route('/:classId')
     });
 })
 
-//PUT update club by ID
+//PUT update character class by ID
 .put(Verify.verifyOrdinaryUser, function(req, res, next) {
     CharacterClass.findByIdAndUpdate(req.params.classId, {$set: req.body}, {new: true}) 
         .exec(function(err, charclass) {
@@ -63,7 +63,7 @@ router.route('/:classId')
     });
 })
 
-///DELETE club by ID
+///DELETE character class by ID
 .delete(Verify.verifyOrdinaryUser, function(req, res, next) {
     CharacterClass.findById(req.params.classId)
         .exec(function(err, charclass) {
