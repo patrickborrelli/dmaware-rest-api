@@ -20,12 +20,7 @@ var CharacterClass = new Schema({
         enum: ['STRENGTH', 'DEXTERITY', 'CONSTITUTION', 'WISDOM', 'INTELLIGENCE', 'CHARISMA']
     },
     armor_proficiency: [String],
-    weapon_proficiency: [String],
-    feature: [String],
-    proficiency_bonus: {
-        type: Schema.Types.ObjectId,
-        ref: 'ProficiencyBonus'
-    }    
+    weapon_proficiency: [String] 
 }, {
     timestamps: true
 });

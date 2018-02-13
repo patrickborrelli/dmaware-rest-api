@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var User = require('../models/user');
+var Character = require('../models/character')
 var Verify = require('./verify');
 
 
@@ -62,6 +63,19 @@ router.route('/:userId')
             user.remove();
             res.json("Successfully removed user: " + full);
         });
+});
+
+
+//#######################################
+router.route('/getCharacters/:userId')
+
+//GET characters by user ID
+.get(Verify.verifyOrdinaryUser, function(req, res, next) {
+    Character.find({'user': req.params.userId})
+        .exec(function(err, characters) {
+            if(err) return next(err);
+            res.json(characters);
+        })
 });
 
 
