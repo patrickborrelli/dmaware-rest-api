@@ -38,6 +38,7 @@ var items = require('./routes/items');
 var capacities = require('./routes/capacities');
 var inventories = require('./routes/inventories');
 var characters = require('./routes/characters');
+var features = require('./routes/features');
 
 var app = express();
 
@@ -78,6 +79,7 @@ app.use('/items', items);
 app.use('/capacities', capacities);
 app.use('/inventories', inventories);
 app.use('/characters', characters);
+app.use('/features', features);
 
 
 // catch 404 and forward to error handler

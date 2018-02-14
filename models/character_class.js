@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var ProficiencyBonus = require('./proficiency_bonus.js');
 
 var CharacterClass = new Schema({
     description: {

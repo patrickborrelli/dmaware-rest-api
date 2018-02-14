@@ -11,7 +11,6 @@ router.route('/')
 .get(Verify.verifyOrdinaryUser, function(req, res, next) {
     CharacterClass.find(req.query) 
         .sort({name: 'asc'})
-        .populate('proficiency_bonus')
         .exec(function(err, character_classes) {
             if(err) return next(err);
             res.json(character_classes);
@@ -47,7 +46,6 @@ router.route('/:classId')
 ///GET character class by ID
 .get(Verify.verifyOrdinaryUser, function(req, res, next) {
     CharacterClass.findById(req.params.classId)
-        .populate('proficiency_bonus')
         .exec(function(err, charclass) {
             if(err) throw err;
             res.json(charclass);
