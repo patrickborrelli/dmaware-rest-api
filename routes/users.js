@@ -129,7 +129,8 @@ router.post('/login', function(req, res, next) {
         success: true,
         fullname: user.getFullName(),
         token: token,
-        userId: user._id
+        userId: user._id,
+        admin: user.admin
       });
     }); 
   })(req,res,next);
