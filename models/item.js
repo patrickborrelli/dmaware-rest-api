@@ -21,6 +21,8 @@ var Item = new Schema({
     },
     multiplier: Number, //if damage inducing
     die_type: Number,
+    range_normal: Number,
+    range_max: Number,
     container: Boolean,
     capacity: {
         type: Schema.Types.ObjectId,

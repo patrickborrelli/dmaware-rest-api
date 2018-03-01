@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var CharacterClass = require('../models/character_class');
-var ProficiencyBonus = require('../models/proficiency_bonus');
+var Item = require('../models/item')
 var Verify = require('./verify');
 
 //#####################################
@@ -11,6 +11,11 @@ router.route('/')
 .get(Verify.verifyOrdinaryUser, function(req, res, next) {
     CharacterClass.find(req.query) 
         .sort({name: 'asc'})
+        .populate('primary_weapon')
+        .populate('secondary_weapon')
+        .populate('tertiary_weapon')
+        .populate('armor')        
+        .populate('mandatory_equipment')    
         .exec(function(err, character_classes) {
             if(err) return next(err);
             res.json(character_classes);
@@ -45,7 +50,12 @@ router.route('/:classId')
 
 ///GET character class by ID
 .get(Verify.verifyOrdinaryUser, function(req, res, next) {
-    CharacterClass.findById(req.params.classId)
+    CharacterClass.findById(req.params.classId)    
+        .populate('primary_weapon')
+        .populate('secondary_weapon')
+        .populate('tertiary_weapon')
+        .populate('armor')        
+        .populate('mandatory_equipment')  
         .exec(function(err, charclass) {
             if(err) throw err;
             res.json(charclass);

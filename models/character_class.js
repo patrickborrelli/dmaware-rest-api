@@ -1,7 +1,13 @@
 var mongoose = require('mongoose');
+var Item = require('./item.js');
 var Schema = mongoose.Schema;
 
 var CharacterClass = new Schema({
+    name: {
+        type: String,
+        trim: true,
+        required: true
+    },
     description: {
         type: String,
         trim: true
@@ -19,7 +25,27 @@ var CharacterClass = new Schema({
         enum: ['STRENGTH', 'DEXTERITY', 'CONSTITUTION', 'WISDOM', 'INTELLIGENCE', 'CHARISMA']
     },
     armor_proficiency: [String],
-    weapon_proficiency: [String] 
+    weapon_proficiency: [String],
+    primary_weapon: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Item'
+    }],
+    secondary_weapon: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Item'
+    }],
+    tertiary_weapon: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Item'
+    }],
+    armor: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Item'
+    }],
+    mandatory_equipment: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Item'
+    }]
 }, {
     timestamps: true
 });
