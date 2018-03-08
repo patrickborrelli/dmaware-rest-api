@@ -7,10 +7,14 @@ var Slot = new Schema({
         type: Number,
         required: true
     },
-    spell: {
-        type: Schema.Types.ObjectId,
-        ref: 'Spell'
-    } 
+    spell_count: {
+        type: Number,
+        default: 0
+    },
+    used: {
+        type: Number,
+        default: 0
+    }
 }, {
     timestamps: true
 });

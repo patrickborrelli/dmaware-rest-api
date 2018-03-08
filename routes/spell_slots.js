@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var SpellSlot = require('../models/slot');
+var SpellSlot = require('../models/spell_slot');
 var Verify = require('./verify');
 
 //#####################################
@@ -39,11 +39,11 @@ router.route('/')
 });
 
 //########################################
-router.route('/:slotId')
+router.route('/:spellSlotId')
 
 ///GET spell_slot by ID
 .get(Verify.verifyOrdinaryUser, function(req, res, next) {
-    SpellSlot.findById(req.params.slotId)
+    SpellSlot.findById(req.params.spellSlotId)
         .exec(function(err, spell_slot) {
             if(err) throw err;
             res.json(slot);
@@ -52,7 +52,7 @@ router.route('/:slotId')
 
 //PUT update spell slot by ID
 .put(Verify.verifyOrdinaryUser, function(req, res, next) {
-    SpellSlot.findByIdAndUpdate(req.params.slotId, {$set: req.body}, {new: true}) 
+    SpellSlot.findByIdAndUpdate(req.params.spellSlotId, {$set: req.body}, {new: true}) 
         .exec(function(err, spell_slot) {
             if(err) throw err;
             res.json(slot);
@@ -61,7 +61,7 @@ router.route('/:slotId')
 
 ///DELETE spell slot by ID
 .delete(Verify.verifyOrdinaryUser, function(req, res, next) {
-    SpellSlot.findById(req.params.slotId)
+    SpellSlot.findById(req.params.spellSlotId)
         .exec(function(err, spell_slot) {
             if(err) throw err;
             spell_slot.remove();

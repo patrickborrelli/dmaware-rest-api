@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Spell = require('./spell.js');
+var SpellbookSpell = require('./spellbook_spell.js');
 var Slot = require('./slot.js');
 var Schema = mongoose.Schema;
 
@@ -16,9 +16,9 @@ var Spellbook = new Schema({
     },
     spell_save_dc: Number,
     spell_attack_bonus: Number,
-    spells: [{
+    spellbook_spells: [{
         type: Schema.Types.ObjectId,
-        ref: 'Spell'
+        ref: 'SpellbookSpell'
     }],
     slots: [{
         type: Schema.Types.ObjectId,

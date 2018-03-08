@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var SpellSlot = new Schema({
+var KnownSpell = new Schema({
     level: Number,
     character_class: {
         type: String,
@@ -20,4 +20,4 @@ var SpellSlot = new Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('SpellSlot', SpellSlot);
+module.exports = mongoose.model('KnownSpell', KnownSpell);
