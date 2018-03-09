@@ -5,7 +5,6 @@ var Skill = require('./skill.js');
 var Inventory = require('./inventory.js');
 var Attack = require('./attack.js');
 var Spellbook = require('./spellbook');
-var Cantrip = require('./cantrip');
 var User = require('./user');
 
 var Schema = mongoose.Schema;
@@ -210,10 +209,6 @@ var Character = new Schema({
     spellbooks: [{
         type: Schema.Types.ObjectId,
         ref: 'Spellbook'
-    }],
-    cantrips: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Cantrip'
     }],
     user: {
         type: Schema.Types.ObjectId,
