@@ -18,17 +18,17 @@ var Race = new Schema({
         type: String,
         enum: ['TINY', 'SMALL', 'MEDIUM', 'LARGE', 'HUGE', 'GARGANTUAN']
     },
-    subraces: {
+    subraces: [{
         type: Schema.Types.ObjectId,
-        ref: Race
-    },
+        ref: 'Race'
+    }],
     alignment: {
         type: String,
     },
     core_languages: [String],
     additional_languages: Number,
     traits: String,
-    ability_increases: [{type: Schema.Types.ObjectId, ref: 'AbilityScoreIncrease' }] 
+    ability_score_increase: [{type: Schema.Types.ObjectId, ref: 'AbilityScoreIncrease' }] 
 }, {
     timestamps: true
 });
