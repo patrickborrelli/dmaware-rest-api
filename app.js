@@ -29,6 +29,7 @@ var character_classes = require('./routes/character_classes');
 var races = require('./routes/races');
 var ability_score_increases = require('./routes/ability_score_increases');
 var skills = require('./routes/skills');
+var skill_lookups = require('./routes/skill_lookups');
 var spells = require('./routes/spells');
 var slots = require('./routes/slots');
 var spell_slots = require('./routes/spell_slots');
@@ -39,6 +40,8 @@ var capacities = require('./routes/capacities');
 var inventories = require('./routes/inventories');
 var characters = require('./routes/characters');
 var features = require('./routes/features');
+var known_cantrips = require('./routes/known_cantrips');
+var known_spells = require('./routes/known_spells');
 
 var app = express();
 
@@ -70,6 +73,7 @@ app.use('/character_classes', character_classes);
 app.use('/ability_score_increases', ability_score_increases);
 app.use('/races', races);
 app.use('/skills', skills);
+app.use('/skill_lookups', skill_lookups);
 app.use('/spells', spells);
 app.use('/slots', slots);
 app.use('/spell_slots', spell_slots);
@@ -80,6 +84,8 @@ app.use('/capacities', capacities);
 app.use('/inventories', inventories);
 app.use('/characters', characters);
 app.use('/features', features);
+app.use('/known_cantrips', known_cantrips);
+app.use('/known_spells', known_spells);
 
 
 // catch 404 and forward to error handler
