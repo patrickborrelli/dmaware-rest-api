@@ -26,6 +26,8 @@ var CharacterClass = new Schema({
     },
     armor_proficiency: [String],
     weapon_proficiency: [String],
+    spellcasting_class: String,
+    spellcasting_ability: String,
     primary_weapon: [{
         type: Schema.Types.ObjectId,
         ref: 'Item'
