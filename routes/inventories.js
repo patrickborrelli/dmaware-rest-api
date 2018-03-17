@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Inventory = require('../models/inventory');
+var async = require('async');
 var Verify = require('./verify');
 
 //#####################################
@@ -68,5 +69,47 @@ router.route('/:inventoryId')
             res.json("Successfully removed " + inventory.name);
     });
 });
+
+
+//########################################
+router.route('/buildFromItems')
+
+//POST a newly created inventory based on an array of Items passed in:
+.post(function(req, res, next) {
+    var items = [];
+    var tWeight = 0;
+    
+    async.waterfall(
+        [            
+            function(waterfallCallback) {
+                async.forEach(req.body.items, function(item, callback) {
+                    console.log("Item " + item._id + " weight = " + item.weight);
+                    tWeight += item.weight;
+                    items.push(item._id)
+                    console.log(items);
+                }, function(err) {
+                    if (err) return next(err);
+                    callback();
+                });    
+                waterfallCallback(null, items);
+                console.log("Total weight of items = " + tWeight);        
+            },
+            function(myItems, waterfallCallback) {
+                //create and add item:
+                Inventory.create({total_weight: tWeight, items: myItems}, function(err, inventory) {
+                    if(err) return next(err);
+                    console.log("New inventory created");
+                    waterfallCallback(null, inventory);
+                });
+            }
+        ],
+        function(err, inventory) {
+            if(err) return next(err);
+            res.json(inventory);
+        }
+    )  
+    
+});
+
 
 module.exports = router;
