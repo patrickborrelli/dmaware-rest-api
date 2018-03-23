@@ -9,6 +9,11 @@ router.route('/')
 //GET all characters:
 .get(Verify.verifyOrdinaryUser, function(req, res, next) {
     Character.find(req.query) 
+        .populate('character_class')    
+        .populate('race')
+        .populate('skills')
+        .populate('attacks')
+        .populate('spellbook')        
         .exec(function(err, characters) {
             if(err) return next(err);
             res.json(characters);
@@ -43,7 +48,12 @@ router.route('/:characterId')
 
 ///GET character by ID
 .get(Verify.verifyOrdinaryUser, function(req, res, next) {
-    Character.findById(req.params.characterId)
+    Character.findById(req.params.characterId)        
+        .populate('character_class')    
+        .populate('race')
+        .populate('skills')
+        .populate('attacks')
+        .populate('spellbook')  
         .exec(function(err, character) {
             if(err) throw err;
             res.json(character);

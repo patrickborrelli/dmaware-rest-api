@@ -149,8 +149,7 @@ var Character = new Schema({
     }, 
     alignment: {
         type: String,
-        default: 'TRUE_NEUTRAL',
-        enum: ['LAWFUL_GOOD', 'LAWFUL_NEUTRAL', 'LAWFUL_EVIL', 'TRUE_NEUTRAL', 'CHAOTIC_GOOD', 'CHAOTIC_NEUTRAL', 'CHAOTIC_EVIL']
+        default: 'True Neutral',
     }, 
     languages: [String], 
     inspiration: {
