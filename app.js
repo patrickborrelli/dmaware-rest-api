@@ -24,6 +24,7 @@ db.once('open', function() {
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var attacks = require('./routes/attacks');
+var alignments = require('./routes/alignments');
 var proficiency_bonuses = require('./routes/proficiency_bonuses');
 var character_classes = require('./routes/character_classes');
 var races = require('./routes/races');
@@ -69,6 +70,7 @@ app.use(cors());
 app.use('/', routes);
 app.use('/users', users);
 app.use('/attacks', attacks);
+app.use('/alignments', alignments);
 app.use('/proficiency_bonuses', proficiency_bonuses);
 app.use('/character_classes', character_classes);
 app.use('/ability_score_increases', ability_score_increases);
