@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var AbilityScoreIncrease = require('./ability_score_increase');
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
 
 var Race = new Schema({
     name: {
@@ -33,4 +34,5 @@ var Race = new Schema({
     timestamps: true
 });
 
+Race.plugin(deepPopulate);
 module.exports = mongoose.model('Race', Race);

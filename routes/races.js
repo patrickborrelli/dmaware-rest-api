@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Race = require('../models/race');
 var AbilityScoreIncrease = require('../models/ability_score_increase');
+var deepPopulate = require('mongoose-deep-populate');
 var Verify = require('./verify');
 
 //#####################################
@@ -13,6 +14,7 @@ router.route('/')
         .sort({name: 'asc'})
         .populate('subraces')
         .populate('ability_score_increase')
+        .deepPopulate('subraces.ability_score_increase')
         .exec(function(err, races) {
             if(err) return next(err);
             res.json(races);
@@ -50,6 +52,7 @@ router.route('/:raceId')
     Race.findById(req.params.raceId) 
         .populate('subraces')
         .populate('ability_score_increase')
+        .deepPopulate('subraces.ability_score_increase')
         .exec(function(err, race) {
             if(err) throw err;
             res.json(race);
