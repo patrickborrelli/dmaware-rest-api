@@ -1,8 +1,25 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+var Component = new Schema({
+    material: Boolean,
+    verbal: Boolean,
+    somatic: Boolean,
+    raw:  {
+        type: String,
+        trim: true
+    },
+    materials_needed:  [{
+        type: String
+    }]
+});
+
 var Spell = new Schema({
     level: Number,
+    source: {
+        type: String,
+        trim: true
+    },
     character_class: [{
         type: String,
         enum: ['Bard', 'Cleric', 'Druid', 'Paladin', 'Ranger', 'Sorcerer', 'Warlock', 'Wizard']
@@ -31,6 +48,20 @@ var Spell = new Schema({
     casting_time:  {
         type: String,
         trim: true
+    },
+    type: {
+        type: String,
+        trim: true
+    },
+    tags: [{
+        type: String
+    }],
+    higher_levels: {
+        type: String,
+        trim: true
+    },
+    components: {
+        type: Component
     }
 }, {
     timestamps: true
