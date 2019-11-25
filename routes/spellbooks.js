@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var SpellbookSpells = require('../models/spellbook_spell');
+var Slots = require('../models/slot');
 var Spellbook = require('../models/spellbook');
 var Verify = require('./verify');
 
@@ -9,6 +11,8 @@ router.route('/')
 //GET all spellbooks:
 .get(Verify.verifyOrdinaryUser, function(req, res, next) {
     Spellbook.find(req.query) 
+        .populate('spellbook_spells')
+        .populate('slots')
         .exec(function(err, spellbooks) {
             if(err) return next(err);
             res.json(spellbooks);
@@ -44,6 +48,8 @@ router.route('/:spellbookId')
 ///GET spellbook by ID
 .get(Verify.verifyOrdinaryUser, function(req, res, next) {
     Spellbook.findById(req.params.spellbookId)
+        .populate('spellbook_spells')
+        .populate('slots')
         .exec(function(err, spellbook) {
             if(err) throw err;
             res.json(spellbook);
