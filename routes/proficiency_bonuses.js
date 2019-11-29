@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var ProficiencyBonus = require('../models/proficiency_bonus');
+var CharacterClass = require('../models/character_class');
+var Item = require('../models/item');
+var deepPopulate = require('mongoose-deep-populate');
 var Verify = require('./verify');
 
 //###########################
@@ -10,6 +13,8 @@ router.route('/')
 .get(Verify.verifyOrdinaryUser, function(req, res, next) {
     ProficiencyBonus.find(req.query) 
         .sort({spellcasting_class: 'asc', level: 'asc', name: 'asc'})
+        .populate('char_class')
+        .deepPopulate('char_class.primary_weapon char_class.secondary_weapon char_class.tertiary_weapon char_class.armor char_class.mandatory_equipment')
         .exec(function(err, proficiency_bonuses) {
             if(err) return next(err);
             res.json(proficiency_bonuses);
@@ -45,6 +50,8 @@ router.route('/:proficiency_bonusId')
 ///GET proficiency_bonus by ID
 .get(Verify.verifyOrdinaryUser, function(req, res, next) {
     ProficiencyBonus.findById(req.params.proficiency_bonusId)
+        .populate('char_class')
+        .deepPopulate('char_class.primary_weapon char_class.secondary_weapon char_class.tertiary_weapon char_class.armor char_class.mandatory_equipment')
         .exec(function(err, proficiency_bonus) {
             if(err) throw err;
             res.json(proficiency_bonus);
