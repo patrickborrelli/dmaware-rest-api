@@ -6,6 +6,7 @@ var Inventory = require('./inventory.js');
 var Attack = require('./attack.js');
 var Spellbook = require('./spellbook');
 var User = require('./user');
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
 
 var Schema = mongoose.Schema;
 
@@ -216,5 +217,7 @@ var Character = new Schema({
 }, {
     timestamps: true
 });
+
+Character.plugin(deepPopulate);
 
 module.exports = mongoose.model('Character', Character);

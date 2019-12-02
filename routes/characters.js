@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Character = require('../models/character');
+var deepPopulate = require('mongoose-deep-populate');
 var Verify = require('./verify');
 
 //#####################################
@@ -13,7 +14,9 @@ router.route('/')
         .populate('race')
         .populate('skills')
         .populate('attacks')
-        .populate('spellbook')        
+        .populate('spellbook')    
+        .deepPopulate('inventory inventory.items')
+        .populate('user')
         .exec(function(err, characters) {
             if(err) return next(err);
             res.json(characters);
@@ -54,6 +57,8 @@ router.route('/:characterId')
         .populate('skills')
         .populate('attacks')
         .populate('spellbook')  
+        .deepPopulate('inventory inventory.items')
+        .populate('user')
         .exec(function(err, character) {
             if(err) throw err;
             res.json(character);

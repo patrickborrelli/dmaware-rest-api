@@ -10,6 +10,7 @@ router.route('/')
 //GET all inventories:
 .get(Verify.verifyOrdinaryUser, function(req, res, next) {
     Inventory.find(req.query) 
+        .populate('items')
         .exec(function(err, inventories) {
             if(err) return next(err);
             res.json(inventories);
@@ -45,6 +46,7 @@ router.route('/:inventoryId')
 ///GET inventory by ID
 .get(Verify.verifyOrdinaryUser, function(req, res, next) {
     Inventory.findById(req.params.inventoryId)
+        .populate('items')
         .exec(function(err, inventory) {
             if(err) throw err;
             res.json(inventory);
