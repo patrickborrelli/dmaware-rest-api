@@ -10,12 +10,10 @@ router.route('/')
 //GET all characters:
 .get(Verify.verifyOrdinaryUser, function(req, res, next) {
     Character.find(req.query) 
-        .populate('character_class')    
-        .populate('race')
+        .deepPopulate('character_class character_class.primary_weapon character_class.secondary_weapon character_class.tertiary_weapon character_class.armor character_class.mandatory_equipment race race.subraces race.ability_score_increase race.subraces.ability_score_increase inventory inventory.items')
         .populate('skills')
         .populate('attacks')
         .populate('spellbook')    
-        .deepPopulate('inventory inventory.items')
         .populate('user')
         .exec(function(err, characters) {
             if(err) return next(err);
@@ -52,12 +50,10 @@ router.route('/:characterId')
 ///GET character by ID
 .get(Verify.verifyOrdinaryUser, function(req, res, next) {
     Character.findById(req.params.characterId)        
-        .populate('character_class')    
-        .populate('race')
+        .deepPopulate('character_class character_class.primary_weapon character_class.secondary_weapon character_class.tertiary_weapon character_class.armor character_class.mandatory_equipment race race.subraces race.ability_score_increase race.subrace.ability_score_increase inventory inventory.items')
         .populate('skills')
         .populate('attacks')
         .populate('spellbook')  
-        .deepPopulate('inventory inventory.items')
         .populate('user')
         .exec(function(err, character) {
             if(err) throw err;
